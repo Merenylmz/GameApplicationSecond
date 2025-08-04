@@ -1,4 +1,4 @@
-import { View, Image, Text, StyleSheet, Dimensions, useWindowDimensions } from 'react-native';
+import { View, Image, Text, StyleSheet, Dimensions, useWindowDimensions, Platform } from 'react-native';
 
 import Title from '../components/ui/Title';
 import PrimaryButton from '../components/ui/PrimaryButton';
@@ -19,6 +19,8 @@ function GameOverScreen({userNumber, roundsNumber, onStartNewGame}) {
         rounds to guess the number{' '}
         <Text style={styles.highlight}>{userNumber}</Text>.
       </Text>
+      {/* Platform kodu ile hangi işletim sisteminde olduğumuz algılayabiliriz */}
+      <Text>{Platform.OS == "ios" ? "IOS":"ANDROID" }</Text>
       <PrimaryButton onPress={onStartNewGame}>Start New Game</PrimaryButton>
     </View>
   );
