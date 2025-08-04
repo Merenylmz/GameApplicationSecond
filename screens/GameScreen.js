@@ -6,6 +6,7 @@ import PrimaryButton from "../components/ui/PrimaryButton";
 import InstructionText from "../components/ui/InstructionText";
 import {Ionicons} from "@expo/vector-icons";
 import GuessLogContainer from "../components/game/GuessLogContainer";
+import { useWindowDimensions } from "react-native";
 
 
 const generateRandomNumber = (min, max, exclude) =>{
@@ -23,6 +24,7 @@ const GameScreen = ({userNumber, onGameOver, setGuessRoundNumber}) => {
   const initialGuess = generateRandomNumber(1, 100, userNumber);
   const [currentGuess, setCurentGuess] = useState(initialGuess);
   const [guessLog, setGuessLog] = useState([]);
+  const {width, height} = useWindowDimensions();
   
 
   useEffect(()=>{
@@ -31,10 +33,10 @@ const GameScreen = ({userNumber, onGameOver, setGuessRoundNumber}) => {
     }
   }, [currentGuess, onGameOver, userNumber]);
 
-  useEffect(()=>{
-    maxBoundary=100;
-    minBoundary=1;
-  }, []);
+  // useEffect(()=>{
+  //   maxBoundary=100;
+  //   minBoundary=1;
+  // }, []);
   
   const nextGuessHandler = (direction) =>{ // direction is 'lower' or 'greater'
     if ((direction === "lower" && currentGuess < userNumber) || (direction === "greater" && currentGuess > userNumber)) {
@@ -74,7 +76,7 @@ const GameScreen = ({userNumber, onGameOver, setGuessRoundNumber}) => {
           </PrimaryButton>
         </View>
       </View>
-      <View style={{flex: 1, padding: 16}}>
+      <View style={{padding: 16}}>
         <FlatList 
           data={guessLog} 
           renderItem={(itemData)=>(

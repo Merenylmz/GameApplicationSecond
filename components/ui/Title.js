@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 const Title = ({children}) => {
-    
   return <Text style={styles.title}>{children}</Text>;
 };
 
@@ -17,5 +16,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#ffffffff',
     padding: 12,
+    // maxWidth: "80%",
+    // width: 300
   }
 });
